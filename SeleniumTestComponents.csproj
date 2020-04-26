@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="packages\MSTest.TestAdapter.2.1.0\build\net45\MSTest.TestAdapter.props" Condition="Exists('packages\MSTest.TestAdapter.2.1.0\build\net45\MSTest.TestAdapter.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{8B683B06-89BB-4B6F-B2F1-AC8F8934301B}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SeleniumTestComponents</RootNamespace>
+    <AssemblyName>SeleniumTestComponents</AssemblyName>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">15.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+    <ReferencePath>$(ProgramFiles)\Common Files\microsoft shared\VSTT\$(VisualStudioVersion)\UITestExtensionPackages</ReferencePath>
+    <IsCodedUITest>False</IsCodedUITest>
+    <TestProjectType>UnitTest</TestProjectType>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="WebDriver, Version=3.141.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Selenium.WebDriver.3.141.0\lib\net45\WebDriver.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BaseComponents\Base\BaseAction.cs" />
+    <Compile Include="BaseComponents\BaseAlert.cs" />
+    <Compile Include="BaseComponents\BaseButton.cs" />
+    <Compile Include="BaseComponents\BaseCheckBox.cs" />
+    <Compile Include="BaseComponents\BaseContextMenu.cs" />
+    <Compile Include="BaseComponents\BaseDatePicker.cs" />
+    <Compile Include="BaseComponents\BaseDropDown.cs" />
+    <Compile Include="BaseComponents\BaseTabMenu.cs" />
+    <Compile Include="BaseComponents\BaseTextEditor.cs" />
+    <Compile Include="BaseComponents\Base\Helpers.cs" />
+    <Compile Include="BaseComponents\Base\BaseCollection.cs" />
+    <Compile Include="StandardComponent\Component.cs" />
+    <Compile Include="BaseComponents\Base\BaseElement.cs" />
+    <Compile Include="BaseComponents\Grid\BaseGrid.cs" />
+    <Compile Include="BaseComponents\Grid\BaseRow.cs" />
+    <Compile Include="BaseComponents\Tree\Node.cs" />
+    <Compile Include="BaseComponents\Tree\Tree.cs" />
+    <Compile Include="KendoComponents\Grid\KendoGrid.cs" />
+    <Compile Include="KendoComponents\Grid\KendoHeaderWithFilter.cs" />
+    <Compile Include="KendoComponents\Grid\KendoHeaderWithMenu.cs" />
+    <Compile Include="KendoComponents\Grid\KendoRow.cs" />
+    <Compile Include="KendoComponents\KendoAlert.cs" />
+    <Compile Include="KendoComponents\KendoButton.cs" />
+    <Compile Include="KendoComponents\KendoCheckBox.cs" />
+    <Compile Include="KendoComponents\KendoContextMenu.cs" />
+    <Compile Include="KendoComponents\KendoDatePicker.cs" />
+    <Compile Include="KendoComponents\KendoDropDown.cs" />
+    <Compile Include="KendoComponents\KendoEditor.cs" />
+    <Compile Include="KendoComponents\KendoNumericTextBox.cs" />
+    <Compile Include="KendoComponents\KendoTabStrip.cs" />
+    <Compile Include="KendoComponents\KendoTextBox.cs" />
+    <Compile Include="KendoComponents\KendoTreeView\KendoTreeView.cs" />
+    <Compile Include="KendoComponents\KendoTreeView\KendoTreeViewNode.cs" />
+    <Compile Include="StandardComponent\CheckBox.cs" />
+    <Compile Include="StandardComponent\TextArea.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>Ce projet fait référence à des packages NuGet qui sont manquants sur cet ordinateur. Utilisez l'option de restauration des packages NuGet pour les télécharger. Pour plus d'informations, consultez http://go.microsoft.com/fwlink/?LinkID=322105. Le fichier manquant est : {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('packages\MSTest.TestAdapter.2.1.0\build\net45\MSTest.TestAdapter.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\MSTest.TestAdapter.2.1.0\build\net45\MSTest.TestAdapter.props'))" />
+    <Error Condition="!Exists('packages\MSTest.TestAdapter.2.1.0\build\net45\MSTest.TestAdapter.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\MSTest.TestAdapter.2.1.0\build\net45\MSTest.TestAdapter.targets'))" />
+  </Target>
+  <Import Project="packages\MSTest.TestAdapter.2.1.0\build\net45\MSTest.TestAdapter.targets" Condition="Exists('packages\MSTest.TestAdapter.2.1.0\build\net45\MSTest.TestAdapter.targets')" />
+</Project>
