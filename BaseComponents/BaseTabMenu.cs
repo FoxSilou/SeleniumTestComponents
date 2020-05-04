@@ -6,7 +6,7 @@
     {
         protected abstract TestCollection<Component> Items { get; }
 
-        public void Navigate(string tab)
+        public void GoToTab(string tab)
         {
             Items.WaitUntilAny();
             Items.GetByText(tab).Click();

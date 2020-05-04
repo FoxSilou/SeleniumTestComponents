@@ -7,6 +7,6 @@
     public class CheckBox : BaseCheckBox
     {
         protected override By DefaultSelector => null;
-        protected override BaseElement InputElement => null;
+        protected override BaseElement InputElement => this;
     }
 }

@@ -3,6 +3,7 @@
     using SeleniumTestComponents.BaseComponents.Base;
     using OpenQA.Selenium;
     using System.Collections.Generic;
+    using System;
 
     public abstract class Node<T> : BaseElement where T : Node<T>, new()
     {
@@ -15,7 +16,6 @@
         #region Values
         public string Name => NameElement.GetText();
         public bool Expanded => IsExpanded();
-        public bool Checked => CheckBox.Checked;
         #endregion Values
 
         public void Expand()
@@ -28,28 +28,16 @@
             return SubNodes.GetByText(name, elt => elt.FindElement(NameElement.Selector).Text);
         }
 
-        public void Check(Stack<string> names)
+        public void DoAction(Action<T> action, Stack<string> names)
         {
             if (names.Count == 0)
             {
-                CheckBox.Check();
+                action(this as T);
                 return;
             }
-            Node<T> node = GetSubNode(names.Pop());
             Expand();
-            node.Check(names);
-        }
-
-        public void Uncheck(Stack<string> names)
-        {
-            if (names.Count == 0)
-            {
-                CheckBox.Uncheck();
-                return;
-            }
             Node<T> node = GetSubNode(names.Pop());
-            Expand();
-            node.Uncheck(names);
+            node.DoAction(action, names);
         }
     }
 }

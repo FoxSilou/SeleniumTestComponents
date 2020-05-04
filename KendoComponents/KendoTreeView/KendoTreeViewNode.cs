@@ -16,5 +16,16 @@
         protected BaseElement Group => GetChild<Component>(By.ClassName("k-group"));
 
         protected override bool IsExpanded() => CollapseIcon.WebElement.GetAttribute("class").Contains("k-i-collapse");
+        public bool Checked => WebElement.GetAttribute("aria-checked") == "true";
+
+        public void Check()
+        {
+            if (!Checked) CheckBox.Click();
+        }
+
+        public void UnCheck()
+        {
+            if (Checked) CheckBox.Click();
+        }
     }
 }

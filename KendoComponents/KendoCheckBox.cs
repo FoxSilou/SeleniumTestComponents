@@ -12,7 +12,18 @@
 
         public new void Set(bool value)
         {
-            Click();
+            if (value) Check();
+            else Uncheck();
+        }
+
+        public new void Check()
+        {
+            if (!Checked) Click();
+        }
+
+        public new void Uncheck()
+        {
+            if (Checked) Click();
         }
 
         public new void Click()

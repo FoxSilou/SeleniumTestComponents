@@ -7,7 +7,7 @@
     public class TextArea : BaseTextEditor
     {
         protected override By DefaultSelector => null;
-        protected override BaseElement Input => null;
+        protected override BaseElement Input => this;
 
         protected override string GetFormattedText() => Input.GetText();
         public bool Disabled => IsNotInteractable();
