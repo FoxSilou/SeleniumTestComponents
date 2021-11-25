@@ -1,7 +1,7 @@
 ﻿namespace SeleniumTestComponents.KendoComponents
 {
-    using SeleniumTestComponents.BaseComponents;
-    using SeleniumTestComponents.BaseComponents.Base;
+    using BaseComponents;
+    using BaseComponents.Base;
     using OpenQA.Selenium;
 
     public class KendoTextBox : BaseTextEditor
@@ -10,5 +10,12 @@
         protected override BaseElement Input => this;
 
         protected override string GetFormattedText() => GetText();
+
+        protected new string GetText() => Input.WebElement.GetAttribute("value");
+
+        public void WaitUntilTextNonEmpty()
+        {
+            _longWait.Until(d => !string.IsNullOrEmpty(GetText()));
+        }
     }
 }

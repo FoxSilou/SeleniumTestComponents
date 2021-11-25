@@ -1,14 +1,16 @@
 ﻿namespace SeleniumTestComponents.BaseComponents
 {
-    using SeleniumTestComponents.BaseComponents.Base;
+    using Base;
 
     public abstract class BaseCheckBox : BaseElement
     {
         protected abstract BaseElement InputElement { get; }
 
         #region Values
+
         public bool Checked => InputElement.WebElement.GetAttribute("checked") == "true";
         public bool IsDisabled => IsNotInteractable();
+
         #endregion Values
 
         public void Set(bool value)

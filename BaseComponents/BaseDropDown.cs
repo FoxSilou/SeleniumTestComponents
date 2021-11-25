@@ -1,26 +1,28 @@
 ﻿namespace SeleniumTestComponents.BaseComponents
 {
-    using SeleniumTestComponents.BaseComponents.Base;
-    using OpenQA.Selenium;
+    using Base;
 
     public abstract class BaseDropDown : BaseElement
     {
-        protected abstract Component Select { get; }
-        protected abstract Component Icon { get; }
-        protected abstract Component Input { get; }
-        protected abstract Component ListContainer { get; }
-        protected abstract TestCollection<Component> Items { get; }
+        protected abstract BaseComponent Select { get; }
+        protected abstract BaseComponent Icon { get; }
+        protected abstract BaseComponent Input { get; }
+        protected abstract BaseComponent ListContainer { get; }
+        protected abstract BaseCollection<BaseComponent> Items { get; }
+
         protected abstract bool IsContentReady();
 
         #region Values
+
         public string Text => Input.GetText();
         public bool IsDisabled => IsNotInteractable();
+
         #endregion Values
 
         public void OpenList()
         {
             _longWait.Until(d => IsContentReady());
-            Click();
+            Helpers.RepeatUntilCondition(() => Click(), () => ListContainer.Displayed());
         }
 
         public void SelectByText(string text)
@@ -31,12 +33,12 @@
 
         public void WaitUntilTextNonEmpty()
         {
-            _longWait.Until(d => !string.IsNullOrEmpty(Text));
+            Input.WaitUntilTextIsNonEmpty();
         }
 
-        public void WaitUntiTextEmpty()
+        public void WaitUntilTextEmpty()
         {
-            _longWait.Until(d => string.IsNullOrEmpty(Text));
+            Input.WaitUntilTextIsEmpty();
         }
     }
 }

@@ -1,9 +1,9 @@
-﻿namespace SeleniumTestComponents.StandardComponents
-{
-    using SeleniumTestComponents.BaseComponents;
-    using SeleniumTestComponents.BaseComponents.Base;
-    using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
+using SeleniumTestComponents.BaseComponents;
+using SeleniumTestComponents.BaseComponents.Base;
 
+namespace SeleniumTestComponents.StandardComponent
+{
     public class CheckBox : BaseCheckBox
     {
         protected override By DefaultSelector => null;

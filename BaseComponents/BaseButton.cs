@@ -1,6 +1,6 @@
 ﻿namespace SeleniumTestComponents.BaseComponents
 {
-    using SeleniumTestComponents.BaseComponents.Base;
+    using Base;
 
     public abstract class BaseButton : BaseElement
     {

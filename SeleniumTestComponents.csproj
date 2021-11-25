@@ -47,6 +47,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaseComponents\BaseDialog.cs" />
     <Compile Include="BaseComponents\Base\BaseAction.cs" />
     <Compile Include="BaseComponents\BaseAlert.cs" />
     <Compile Include="BaseComponents\BaseButton.cs" />
@@ -57,9 +58,34 @@
     <Compile Include="BaseComponents\BaseTabMenu.cs" />
     <Compile Include="BaseComponents\BaseTextEditor.cs" />
     <Compile Include="BaseComponents\Base\Helpers.cs" />
+    <Compile Include="BaseComponents\Base\RobustWebDriver.cs" />
+    <Compile Include="BaseComponents\Base\RobustWebElement.cs" />
     <Compile Include="BaseComponents\Base\BaseCollection.cs" />
-    <Compile Include="StandardComponent\Component.cs" />
+    <Compile Include="BaseComponents\Base\BaseComponent.cs" />
     <Compile Include="BaseComponents\Base\BaseElement.cs" />
+    <Compile Include="BaseComponents\Base\BasePage.cs" />
+    <Compile Include="KendoComponents\KendoConfirm.cs" />
+    <Compile Include="KendoComponents\KendoTreeList\KendoTreeList.cs" />
+    <Compile Include="KendoComponents\KendoTreeList\KendoTreeListNode.cs" />
+    <Compile Include="RadzenComponents\Grid\RadzenGrid.cs" />
+    <Compile Include="RadzenComponents\Grid\RadzenRow.cs" />
+    <Compile Include="RadzenComponents\RadzenButton.cs" />
+    <Compile Include="RadzenComponents\RadzenCheckBox.cs" />
+    <Compile Include="RadzenComponents\RadzenDatePicker.cs" />
+    <Compile Include="RadzenComponents\RadzenDropDown.cs" />
+    <Compile Include="RadzenComponents\RadzenHtmlEditor.cs" />
+    <Compile Include="RadzenComponents\RadzenLabel.cs" />
+    <Compile Include="RadzenComponents\RadzenLogin.cs" />
+    <Compile Include="RadzenComponents\RadzenNotification.cs" />
+    <Compile Include="RadzenComponents\RadzenPanelMenu.cs" />
+    <Compile Include="RadzenComponents\RadzenSwitch.cs" />
+    <Compile Include="RadzenComponents\RadzenTabview.cs" />
+    <Compile Include="RadzenComponents\RadzenTextArea.cs" />
+    <Compile Include="RadzenComponents\RadzenTextBox.cs" />
+    <Compile Include="RadzenComponents\RadzenTree\RadzenTree.cs" />
+    <Compile Include="RadzenComponents\RadzenTree\RadzenTreeNode.cs" />
+    <Compile Include="StandardComponent\Button.cs" />
+    <Compile Include="StandardComponent\Component.cs" />
     <Compile Include="BaseComponents\Grid\BaseGrid.cs" />
     <Compile Include="BaseComponents\Grid\BaseRow.cs" />
     <Compile Include="BaseComponents\Tree\Node.cs" />
@@ -86,6 +112,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="README.md" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

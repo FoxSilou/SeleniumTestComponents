@@ -1,26 +1,51 @@
-﻿namespace SeleniumTestComponents.BaseComponents
-{
-    using SeleniumTestComponents.BaseComponents.Base;
+﻿using System;
+using SeleniumTestComponents.BaseComponents.Base;
 
+namespace SeleniumTestComponents.BaseComponents.Grid
+{
     public abstract class BaseRow : BaseElement
     {
-        protected TestCollection<Component> _columns;
-        public BaseRow WithColumns(TestCollection<Component> columns)
+        protected BaseCollection<BaseComponent> _columns;
+        protected Func<BaseElement, string> _columnTextSelector;
+
+        public BaseRow WithColumns(BaseCollection<BaseComponent> columns)
         {
             _columns = columns;
             return this;
         }
 
-        protected abstract TestCollection<Component> Cells { get; }
-
-        protected Component GetCell(string columName)
+        public BaseRow WithColumnTextSelector(Func<BaseElement, string> textSelector)
         {
-            return Cells.GetByIndex(_columns.GetIndex(columName));
+            _columnTextSelector = textSelector;
+            return this;
         }
 
-        public string GetCellText(string columName)
+        protected abstract BaseCollection<BaseComponent> Cells { get; }
+
+        public BaseComponent GetCell(int columnIndex)
         {
-            return GetCell(columName).GetText();
+            return Cells.GetByIndex(columnIndex);
+        }
+
+        public string GetCellText(int columnIndex)
+        {
+            return GetCell(columnIndex).GetText();
+        }
+
+        public BaseComponent GetCell(string columnText)
+        {
+            var index = _columns.ScrollAndGetIndex(columnText, _columnTextSelector);
+            return Cells.GetByIndex(index);
+        }
+
+        public string GetCellText(string columnText)
+        {
+            return GetCell(columnText).GetText();
+        }
+
+        public bool IsCellTextEmpty(string columnText)
+        {
+            return GetCell(columnText).IsTextEmpty();
         }
     }
 }

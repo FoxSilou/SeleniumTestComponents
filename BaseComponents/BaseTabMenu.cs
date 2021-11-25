@@ -1,10 +1,10 @@
 ﻿namespace SeleniumTestComponents.BaseComponents
 {
-    using SeleniumTestComponents.BaseComponents.Base;
+    using Base;
 
     public abstract class BaseTabMenu : BaseElement
     {
-        protected abstract TestCollection<Component> Items { get; }
+        protected abstract BaseCollection<BaseComponent> Items { get; }
 
         public void GoToTab(string tab)
         {

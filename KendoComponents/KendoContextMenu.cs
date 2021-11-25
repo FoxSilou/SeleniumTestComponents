@@ -1,15 +1,15 @@
 ﻿namespace SeleniumTestComponents.KendoComponents
 {
-    using SeleniumTestComponents.BaseComponents;
-    using SeleniumTestComponents.BaseComponents.Base;
+    using BaseComponents;
+    using BaseComponents.Base;
     using OpenQA.Selenium;
 
     public class KendoContextMenu : BaseContextMenu
     {
         protected override By DefaultSelector => null;
-        protected override TestCollection<Component> Items => GetChildren<Component>(By.ClassName("k-item"));
+        protected override BaseCollection<BaseComponent> Items => GetChildren<BaseComponent>(By.ClassName("k-item"));
 
-        protected override bool IsItemDisabled(Component item)
+        protected override bool IsItemDisabled(BaseComponent item)
         {
             return item.WebElement.GetAttribute("aria-disabled") == "true";
         }

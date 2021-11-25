@@ -1,7 +1,7 @@
 ﻿namespace SeleniumTestComponents.KendoComponents
 {
-    using SeleniumTestComponents.BaseComponents;
-    using SeleniumTestComponents.BaseComponents.Base;
+    using BaseComponents;
+    using BaseComponents.Base;
     using OpenQA.Selenium;
 
     public class KendoCheckBox : BaseCheckBox
@@ -28,8 +28,9 @@
 
         public new void Click()
         {
-            IJavaScriptExecutor js = (IJavaScriptExecutor)_driver;
-            js.ExecuteScript("arguments[0].click();", WebElement);
+            // TODO
+            //IJavaScriptExecutor js = ((RobustWebDriver)_driver).GetScriptExecutor();
+            //js.ExecuteScript("arguments[0].click();", WebElement);
         }
     }
 }

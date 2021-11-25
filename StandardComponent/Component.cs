@@ -1,6 +1,7 @@
 ﻿using OpenQA.Selenium;
+using SeleniumTestComponents.BaseComponents.Base;
 
-namespace SeleniumTestComponents.BaseComponents.Base
+namespace SeleniumTestComponents.StandardComponent
 {
     public class Component : BaseElement
     {

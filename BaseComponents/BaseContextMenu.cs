@@ -1,12 +1,12 @@
 ﻿namespace SeleniumTestComponents.BaseComponents
 {
-    using SeleniumTestComponents.BaseComponents.Base;
-    using OpenQA.Selenium;
+    using Base;
 
     public abstract class BaseContextMenu : BaseElement
     {
-        protected abstract TestCollection<Component> Items { get; }
-        protected abstract bool IsItemDisabled(Component item);
+        protected abstract BaseCollection<BaseComponent> Items { get; }
+
+        protected abstract bool IsItemDisabled(BaseComponent item);
 
         public void SelectByIndex(int index)
         {

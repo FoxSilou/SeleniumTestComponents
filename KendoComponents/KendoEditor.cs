@@ -1,7 +1,7 @@
 ﻿namespace SeleniumTestComponents.KendoComponents
 {
-    using SeleniumTestComponents.BaseComponents;
-    using SeleniumTestComponents.BaseComponents.Base;
+    using BaseComponents;
+    using BaseComponents.Base;
     using OpenQA.Selenium;
 
     public class KendoEditor : BaseTextEditor

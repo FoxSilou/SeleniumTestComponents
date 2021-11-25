@@ -1,7 +1,6 @@
 ﻿namespace SeleniumTestComponents.BaseComponents
 {
-    using SeleniumTestComponents.BaseComponents.Base;
-    using OpenQA.Selenium;
+    using Base;
 
     public abstract class BaseAlert : BaseElement
     {
@@ -10,8 +9,10 @@
         protected abstract BaseElement Button { get; }
 
         #region Values
+
         public string Title => TitleElement.GetText();
         public string Message => MessageElement.GetText();
+
         #endregion Values
 
         public void Ok()

@@ -13,6 +13,7 @@
         protected WebDriverWait _wait;
         protected WebDriverWait _longWait;
         protected BaseElement _parent;
+        protected BasePage _page;
         protected int? _index;
 
         protected abstract By DefaultSelector { get; }
@@ -21,7 +22,7 @@
         {
             _driver = driver;
             _wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(5));
-            _longWait = new WebDriverWait(_driver, TimeSpan.FromSeconds(60));
+            _longWait = new WebDriverWait(_driver, TimeSpan.FromSeconds(180));
             return this;
         }
 
@@ -44,29 +45,35 @@
             return this;
         }
 
+        public BaseElement WithPage(BasePage page)
+        {
+            _page = page;
+            return this;
+        }
+
         public IWebElement WebElement
         {
             get
             {
                 return _index == null
-                        ? Helpers.GetWebElement(_driver, Selector, _parent?.WebElement) // Si un parent est précisé sans index
-                        : Helpers.GetWebElements(_driver, Selector, _parent?.WebElement)[_index.Value]; // Si un parent est précisé avec index
+                           ? Helpers.GetWebElement(_driver, Selector, _parent?.WebElement) // Si un parent est précisé sans index
+                           : Helpers.GetWebElements(_driver, Selector, _parent?.WebElement)[_index.Value]; // Si un parent est précisé avec index
             }
         }
 
         public T Get<T>(By selector = null) where T : BaseElement, new()
         {
-            return new T().WithDriver(_driver).WithSelector(selector) as T;
+            return new T().WithDriver(_driver).WithSelector(selector).WithPage(_page) as T;
         }
 
         public T GetChild<T>(By selector = null) where T : BaseElement, new()
         {
-            return new T().WithDriver(_driver).WithParent(this).WithSelector(selector) as T;
+            return new T().WithDriver(_driver).WithParent(this).WithSelector(selector).WithPage(_page) as T;
         }
 
-        public TestCollection<T> GetChildren<T>(By selector) where T : BaseElement, new()
+        public BaseCollection<T> GetChildren<T>(By selector) where T : BaseElement, new()
         {
-            return new TestCollection<T>(selector, this, _driver);
+            return new BaseCollection<T>(selector, this, _driver, _page);
         }
 
         public bool Exists()
@@ -89,10 +96,12 @@
         public void Click()
         {
             int attempts = 0;
-            while(attempts < 3)
+            while (attempts < 3)
             {
                 try
                 {
+                    Thread.Sleep(500);
+                    //ScrollIntoView();
                     WebElement.Click();
                     return;
                 }
@@ -105,7 +114,6 @@
                 catch (ElementNotSelectableException)
                 {
                 }
-                Thread.Sleep(500);
                 attempts++;
             }
         }
@@ -114,10 +122,11 @@
         {
             try
             {
+                Thread.Sleep(500);
                 WebElement.Click();
                 return false;
             }
-            catch(ElementClickInterceptedException)
+            catch (ElementClickInterceptedException)
             {
                 return true;
             }
@@ -131,16 +140,31 @@
             }
         }
 
+        public bool IsTextEmpty()
+        {
+            return string.IsNullOrWhiteSpace(WebElement.Text);
+        }
+
         public string GetText()
         {
+            //_wait.Until(d => !IsTextEmpty());
             return WebElement.Text;
+        }
+
+        public void WaitUntilTextIsEmpty()
+        {
+            _wait.Until(d => IsTextEmpty());
+        }
+
+        public void WaitUntilTextIsNonEmpty()
+        {
+            _longWait.Until(d => !IsTextEmpty());
         }
 
         public void ScrollIntoView()
         {
-            IJavaScriptExecutor js = (IJavaScriptExecutor)_driver;
-            js.ExecuteScript("arguments[0].scrollIntoView(false);", WebElement);
             Thread.Sleep(500);
+            ((RobustWebElement)WebElement).ScrollIntoView();
         }
     }
 }
